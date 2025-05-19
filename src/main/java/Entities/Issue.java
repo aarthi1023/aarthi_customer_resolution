@@ -34,9 +34,9 @@ public class Issue {
     public static void assignIssue(String issueId) {
         Issue issue = issues.get(issueId);
         if (issue == null) return;
-
+        String type = issue.issueType;
         for (Agent agent : Agent.agents.values()) {
-            if (!agent.hasActiveIssue()) {
+            if (!agent.hasActiveIssue()&&agent.issueTypes.contains(type)) {
                 agent.issues.add(issue);
                 System.out.println("Issue " + issueId + " assigned to Agent " + agent.agentId);
                 return;
